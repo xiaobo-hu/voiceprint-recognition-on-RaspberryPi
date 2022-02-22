@@ -6,6 +6,7 @@ import argparse
 import face_utils
 
 # step 1: set arguments
+"""
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--input", default="../../data/sample_video.mp4",
                 help="path to input video file")
@@ -16,6 +17,7 @@ ap.add_argument("-f", "--fps", type=int, default=30,
 ap.add_argument("-c", "--codec", type=str, default="MJPG",
                 help="codec of output video")
 args = vars(ap.parse_args())
+"""
 
 # step 2: Dlib requirements
 # 可更改路径
@@ -28,7 +30,7 @@ MOUSE_END = 68 - 1
 
 # step 3: 创建VideoCapture，传入0即打开系统默认摄像头
 # 由于调试，本处通过本地的参数输入
-cap = cv2.VideoCapture(args["input"])
+cap = cv2.VideoCapture(0) # args["input"])
 
 # step 4: 开始检测
 while True:
@@ -49,8 +51,8 @@ while True:
         (x, y, w, h) = cv2.boundingRect(mouseHull)
 
         # 画出矩形 (0,255,9)是画线对应的rgb颜色、2是所画的线的宽度
-        border = 5
-        cv2.rectangle(frame, (x - border, y - border), (x + w + border, y + h + border), (0, 255, 9), 2)
+        # border = 5
+        # cv2.rectangle(frame, (x - border, y - border), (x + w + border, y + h + border), (0, 255, 9), 2)
         # 使用cv2.drawContours画出轮廓图
         cv2.drawContours(frame, [mouseHull], -1, (0, 255, 0), 1)
 
