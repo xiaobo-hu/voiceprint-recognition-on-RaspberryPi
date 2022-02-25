@@ -5,7 +5,7 @@ import sys
 import nls
 
 
-URL="ws://nls-gateway.cn-shanghai-internal.aliyuncs.com/ws/v1"
+URL="wss://nls-gateway.cn-shanghai.aliyuncs.com/ws/v1"
 AKID="LTAI5tGn2iduu2SGTEE6Nvg8"
 AKKEY="CFFTzG0cMJuHJHz4gOfeNXsa0hUVMs"
 APPKEY="CWrqwVL74fGAUbtt"
@@ -76,7 +76,7 @@ class TestSr:
 def multiruntest(num=1):
     for i in range(0, num):
         name = "thread" + str(i)
-        t = TestSr(name, "tests/tts_test.pcm")
+        t = TestSr(name, "tests/test1_1.pcm")
         t.start()
 
 #设置打开日志输出
