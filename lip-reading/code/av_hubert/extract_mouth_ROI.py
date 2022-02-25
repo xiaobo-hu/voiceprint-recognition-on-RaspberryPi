@@ -7,14 +7,14 @@ from preparation.align_mouth import landmarks_interpolate, crop_patch, write_vid
 from IPython.display import HTML
 from base64 import b64encode
 
-def play_video(video_path, width=200):
-  mp4 = open(video_path,'rb').read()
-  data_url = "data:video/mp4;base64," + b64encode(mp4).decode()
-  return HTML(f"""
-  <video width={width} controls>
-        <source src="{data_url}" type="video/mp4">
-  </video>
-  """)
+# def play_video(video_path, width=200):
+#   mp4 = open(video_path,'rb').read()
+#   data_url = "data:video/mp4;base64," + b64encode(mp4).decode()
+#   return HTML(f"""
+#   <video width={width} controls>
+#         <source src="{data_url}" type="video/mp4">
+#   </video>
+#   """)
 
 def detect_landmark(image, detector, predictor):
     gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
@@ -45,10 +45,8 @@ def preprocess_video(input_video_path, output_video_path, face_predictor_path, m
   write_video_ffmpeg(rois, output_video_path, "/usr/bin/ffmpeg")
   return
 
-face_predictor_path = "/content/data/misc/shape_predictor_68_face_landmarks.dat"
-mean_face_path = "/content/data/misc/20words_mean_face.npy"
-origin_clip_path = "/content/data/clip.mp4"
-mouth_roi_path = "/content/data/roi.mp4"
+face_predictor_path = "../../model/dlib/shape_predictor_68_face_landmarks.dat"
+mean_face_path = "../../model/Lipreading_using_Temporal_Convolutional_Networks/20words_mean_face.npy"
+origin_clip_path = "../../data/avhubert_demo_video_8s.mp4"
+mouth_roi_path = "../../ret/roi.mp4"
 preprocess_video(origin_clip_path, mouth_roi_path, face_predictor_path, mean_face_path)
-
-
