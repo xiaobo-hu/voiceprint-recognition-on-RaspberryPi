@@ -1,4 +1,5 @@
 import cv2
+import os
 import tempfile
 from argparse import Namespace
 import fairseq
@@ -20,7 +21,7 @@ def predict(video_path, ckpt_path, user_dir):
   gen_subset = "test"
   gen_cfg = GenerationConfig(beam=20)
   models, saved_cfg, task = checkpoint_utils.load_model_ensemble_and_task([ckpt_path])
-  models = [model.eval().cuda() for model in models]
+  models = [model.eval() for model in models]
   saved_cfg.task.modalities = modalities
   saved_cfg.task.data = data_dir
   saved_cfg.task.label_dir = data_dir
@@ -36,18 +37,20 @@ def predict(video_path, ckpt_path, user_dir):
 
   itr = task.get_batch_iterator(dataset=task.dataset(gen_subset)).next_epoch_itr(shuffle=False)
   sample = next(itr)
-  sample = utils.move_to_cuda(sample)
+  # sample = utils.move_to_cuda(sample)
   hypos = task.inference_step(generator, models, sample)
   ref = decode_fn(sample['target'][0].int().cpu())
   hypo = hypos[0][0]['tokens'].int().cpu()
   hypo = decode_fn(hypo)
   return hypo
 
-mouth_roi_path, ckpt_path = "/content/data/roi.mp4", "/content/data/finetune-model.pt"
-user_dir = "/root/av_hubert/avhubert"
+pwd = os.getcwd()
+father_path=os.path.abspath(os.path.dirname(pwd)+os.path.sep+".")
+grader_father=os.path.abspath(os.path.dirname(father_path)+os.path.sep+"..")
+
+
+mouth_roi_path = os.path.join(grader_father, "ret/roi.mp4")
+ckpt_path = os.path.join(grader_father, "model/avhubert_pretrained/base_vox_433h.pt")
+user_dir = pwd
 hypo = predict(mouth_roi_path, ckpt_path, user_dir)
-HTML(f"""
-  <h3>
-    Prediction - {hypo}
-  </h3>
-  """)
+print("prediction:", hypo)

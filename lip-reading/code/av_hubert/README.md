@@ -1,4 +1,13 @@
+# 安装
+
+`pip install -r requirements.txt`
+`cd fairseq`
+`pip install --editable ./`
+
+
+
 # AV-HuBERT (Audio-Visual Hidden Unit BERT)
+
 [Learning Audio-Visual Speech Representation by Masked Multimodal Cluster Prediction](https://arxiv.org/abs/2201.02184)
 
 [Robust Self-Supervised Audio-Visual Speech Recognition](https://arxiv.org/abs/2201.01763)

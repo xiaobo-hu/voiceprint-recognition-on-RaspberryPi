@@ -45,8 +45,12 @@ def preprocess_video(input_video_path, output_video_path, face_predictor_path, m
   write_video_ffmpeg(rois, output_video_path, "/usr/bin/ffmpeg")
   return
 
-face_predictor_path = "../../model/dlib/shape_predictor_68_face_landmarks.dat"
-mean_face_path = "../../model/Lipreading_using_Temporal_Convolutional_Networks/20words_mean_face.npy"
-origin_clip_path = "../../data/avhubert_demo_video_8s.mp4"
-mouth_roi_path = "../../ret/roi.mp4"
+pwd = os.getcwd()
+father_path=os.path.abspath(os.path.dirname(pwd)+os.path.sep+".")
+grader_father=os.path.abspath(os.path.dirname(father_path)+os.path.sep+"..")
+
+face_predictor_path = os.path.join(grader_father, "model/dlib/shape_predictor_68_face_landmarks.dat")
+mean_face_path = os.path.join(grader_father, "model/Lipreading_using_Temporal_Convolutional_Networks/20words_mean_face.npy")
+origin_clip_path = os.path.join(grader_father, "data/avhubert_demo_video_8s.mp4")
+mouth_roi_path = os.path.join(grader_father, "ret/roi.mp4")
 preprocess_video(origin_clip_path, mouth_roi_path, face_predictor_path, mean_face_path)
