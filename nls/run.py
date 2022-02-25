@@ -5,7 +5,7 @@ import sys
 import nls
 
 
-URL="wss://nls-gateway.cn-shanghai.aliyuncs.com/ws/v1"
+URL="wss://nls-gateway.cn-shanghai.aliyuncs.com/ws/v1" 
 AKID="LTAI5tGn2iduu2SGTEE6Nvg8"
 AKKEY="CFFTzG0cMJuHJHz4gOfeNXsa0hUVMs"
 APPKEY="CWrqwVL74fGAUbtt"
