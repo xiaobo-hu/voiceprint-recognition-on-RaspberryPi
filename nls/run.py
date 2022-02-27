@@ -5,9 +5,9 @@ import sys
 import nls
 
 
-URL="ws://nls-gateway.cn-shanghai-internal.aliyuncs.com/ws/v1"
-AKID="LTAI5tGn2iduu2SGTEE6Nvg8"
-AKKEY="CFFTzG0cMJuHJHz4gOfeNXsa0hUVMs"
+URL="wss://nls-gateway.cn-shanghai.aliyuncs.com/ws/v1"
+AKID="LTAI5tBrSdLnacds5up6Be3K"
+AKKEY="C5aGXMP9hZZ9M8RrQJ0vWqnvW0cdZJ"
 APPKEY="CWrqwVL74fGAUbtt"
 
 #以下代码会根据音频文件内容反复进行一句话识别
@@ -76,7 +76,7 @@ class TestSr:
 def multiruntest(num=1):
     for i in range(0, num):
         name = "thread" + str(i)
-        t = TestSr(name, "tests/tts_test.pcm")
+        t = TestSr(name, "tests/test1.pcm")
         t.start()
 
 #设置打开日志输出

@@ -18,11 +18,11 @@ the License.
 import os
 import setuptools
 
-with open("README.md", "r") as f:
+with open("readme.md", "r") as f:
     long_description = f.read()
 
 requires = [
-    "oss2",
+#    "oss2",
     "aliyun-python-sdk-core==2.13.3",
     "matplotlib==3.3.4"
 ]
