@@ -90,11 +90,11 @@ grader_father=os.path.abspath(os.path.dirname(father_path)+os.path.sep+"..")
 
 face_predictor_path = os.path.join(grader_father, "model/dlib/shape_predictor_68_face_landmarks.dat")
 mean_face_path = os.path.join(grader_father, "model/Lipreading_using_Temporal_Convolutional_Networks/20words_mean_face.npy")
-origin_clip_path = os.path.join(grader_father, "data/avhubert_demo_video_8s.mp4")
+origin_clip_path = os.path.join(grader_father, "data/test_english.mp4")
 mouth_roi_path = os.path.join(grader_father, "ret/roi.mp4")
 preprocess_video(origin_clip_path, mouth_roi_path, face_predictor_path, mean_face_path)
 
-ckpt_path = os.path.join(grader_father, "model/avhubert_pretrained/base_vox_433h.pt")
+ckpt_path = os.path.join(grader_father, "model/avhubert_pretrained/large_vox_433h.pt")
 user_dir = pwd
 hypo = predict(mouth_roi_path, ckpt_path, user_dir)
 
