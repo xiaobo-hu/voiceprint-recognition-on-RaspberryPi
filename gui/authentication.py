@@ -10,6 +10,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import behavior
 
+
 class Ui_authentication(QtWidgets.QDialog):
     def setupUi(self, authentication):
         super().__init__()
@@ -99,16 +100,15 @@ class Ui_authentication(QtWidgets.QDialog):
                                                                                 "说出以下数字"))
         self.start_pushButton.setText(_translate("authentication", "开始"))
         self.back_pushButton.setText(_translate("authentication", "返回"))
-        self.num1_label.setText(_translate("authentication", "2"))
-        self.num2_label.setText(_translate("authentication", "2"))
-        self.num3_label.setText(_translate("authentication", "2"))
-        self.num4_label.setText(_translate("authentication", "2"))
+
+        self.authentication_Nums = self.num_generate()
+        self.num1_label.setText(_translate("authentication", str(self.authentication_Nums[0])))
+        self.num2_label.setText(_translate("authentication", str(self.authentication_Nums[1])))
+        self.num3_label.setText(_translate("authentication", str(self.authentication_Nums[2])))
+        self.num4_label.setText(_translate("authentication", str(self.authentication_Nums[3])))
 
     # authentication
     def authenticate(self):
-        self.num_generate()
-
-        self.authenticate_record()
         result = self.compare()
 
         if result:
@@ -122,7 +122,8 @@ class Ui_authentication(QtWidgets.QDialog):
     def num_generate(self):
         import random
         random_num = []
-        for i in range(4):
+        i = 0
+        while i < 4:
             num = random.randint(0, 9)
             if num == 1:
                 continue
@@ -130,9 +131,6 @@ class Ui_authentication(QtWidgets.QDialog):
                 random_num.append(num)
                 i += 1
         return random_num
-
-    def authenticate_record(self):
-        pass
 
     def compare(self):
         return True

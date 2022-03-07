@@ -91,6 +91,8 @@ class Ui_user_register(QtWidgets.QDialog):
     # register function
     def save(self):
         """
+        judge whether the user inputs the complete information
+        method:
         先判断文本是否为空 是则继续 否则返回 弹窗提示
         再检查是否有该文件夹 是则继续 否则返回 弹窗提示
         再检查里面是否有三条录音 是则继续 否则false 弹窗提示
