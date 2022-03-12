@@ -29,7 +29,7 @@ class Ui_user_register(QtWidgets.QDialog):
         self.register_Label.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.register_Label.setObjectName("register_Label")
         self.name_reminder_Label = QtWidgets.QLabel(user_register)
-        self.name_reminder_Label.setGeometry(QtCore.QRect(60, 200, 221, 81))
+        self.name_reminder_Label.setGeometry(QtCore.QRect(50, 190, 240, 100))
         font = QtGui.QFont()
         font.setFamily("黑体")
         font.setPointSize(12)
@@ -47,7 +47,7 @@ class Ui_user_register(QtWidgets.QDialog):
         self.nameinput_lineEdit.setText("")
         self.nameinput_lineEdit.setObjectName("nameinput_lineEdit")
         self.record_reminder_Label = QtWidgets.QLabel(user_register)
-        self.record_reminder_Label.setGeometry(QtCore.QRect(50, 300, 271, 141))
+        self.record_reminder_Label.setGeometry(QtCore.QRect(50, 290, 290, 160))
         font = QtGui.QFont()
         font.setFamily("黑体")
         font.setPointSize(12)
@@ -82,6 +82,7 @@ class Ui_user_register(QtWidgets.QDialog):
                                                                        "\n"
                                                                        "清晰读出0,2,3,4,5,6,7,8,9\n"
                                                                        "（1由于口音不同不考虑在内）\n"
+                                                                       "录音时间持续10秒\n"
                                                                        "\n"
                                                                        "重复三遍后点击[保存]"))
         self.record_pushButton.setText(_translate("user_register", "录音"))
@@ -98,8 +99,6 @@ class Ui_user_register(QtWidgets.QDialog):
         再检查里面是否有三条录音 是则继续 否则false 弹窗提示
         """
         import os
-        CURPATH = os.getcwd()
-        USER_DATA = 'user_data'
 
         name = self.nameinput_lineEdit.text()
 
@@ -107,29 +106,41 @@ class Ui_user_register(QtWidgets.QDialog):
             msg = QtWidgets.QMessageBox.information(self, '提示', '文本栏为空！\n请先输入用户名')
             return
 
-        DATA_PATH = os.path.join(CURPATH, USER_DATA, name)
+        USER_DIR = os.path.join(os.pardir, "voiceprint//SpeakerVerificationLock//Enroll", name)
 
-        if not os.path.exists(DATA_PATH):
+        if not os.path.exists(USER_DIR):
             msg = QtWidgets.QMessageBox.information(self, '提示', '尚未保存\n不存在此文件夹！')
             return
 
-        file1_name = name + '_record1.mp3'
-        file2_name = name + '_record2.mp3'
-        file3_name = name + '_record3.mp3'
+        file1_name = name + '_record1.wav'
+        file2_name = name + '_record2.wav'
+        file3_name = name + '_record3.wav'
 
-        if os.path.exists(os.path.join(DATA_PATH, file1_name)) and \
-                os.path.exists(os.path.join(DATA_PATH, file2_name)) and \
-                os.path.exists(os.path.join(DATA_PATH, file3_name)):
+        if os.path.exists(os.path.join(USER_DIR, file1_name)) and \
+                os.path.exists(os.path.join(USER_DIR, file2_name)) and \
+                os.path.exists(os.path.join(USER_DIR, file3_name)):
+            import matlab.engine
+
+            eng = matlab.engine.start_matlab()
+            eng.cd(os.path.join(os.pardir, "voiceprint"))
+
+            eng.Train('./SpeakerVerificationLock/CNC2/*/*.wav','./model/BaseModel.mat',nargout=0)
+            eng.Enroll('./SpeakerVerificationLock/Enroll/*/*.wav', './model/BaseModel.mat', './model/CheckPoint.mat',
+                       nargout=0)
+
             msg = QtWidgets.QMessageBox.information(self, '提示', '保存成功！')
             return
-        elif not os.path.exists(os.path.join(DATA_PATH, file1_name)):
+        elif not os.path.exists(os.path.join(USER_DIR, file1_name)):
             msg = QtWidgets.QMessageBox.information(self, '提示', '尚未保存录音！')
             return
-        elif not os.path.exists(os.path.join(DATA_PATH, file2_name)):
+        elif not os.path.exists(os.path.join(USER_DIR, file2_name)):
             msg = QtWidgets.QMessageBox.information(self, '提示', '尚未收集完毕！\n还差2次录音')
             return
-        elif not os.path.exists(os.path.join(DATA_PATH, file3_name)):
+        elif not os.path.exists(os.path.join(USER_DIR, file3_name)):
             msg = QtWidgets.QMessageBox.information(self, '提示', '尚未保存录音！\n还差1次录音')
+            return
+        else:
+            msg = QtWidgets.QMessageBox.information(self, '提示', '录音已经完成！')
             return
 
     def record_voice(self):
@@ -139,37 +150,32 @@ class Ui_user_register(QtWidgets.QDialog):
         最后录音 录音成功则保存
         """
         import os
-        CURPATH = os.getcwd()
-        USER_DATA = 'user_data'
 
         name = self.nameinput_lineEdit.text()
-        DATA_PATH = os.path.join(CURPATH, USER_DATA, name)
+        USER_DIR = os.path.join(os.pardir, "voiceprint//SpeakerVerificationLock//Enroll", name)
 
-        if not os.path.exists(DATA_PATH):
-            msg = QtWidgets.QMessageBox.information(self, '提示', '不存在此文件夹！')
-            return
 
-        file1_name = name + '_record1.mp3'
-        file2_name = name + '_record2.mp3'
-        file3_name = name + '_record3.mp3'
+        file1_name = name + '_record1.wav'
+        file2_name = name + '_record2.wav'
+        file3_name = name + '_record3.wav'
 
-        if os.path.exists(os.path.join(DATA_PATH, file3_name)):
+        if os.path.exists(os.path.join(USER_DIR, file3_name)):
             msg = QtWidgets.QMessageBox.information(self, '提示', '此用户已经收集数据完毕！')
             return
-        elif os.path.exists(os.path.join(DATA_PATH, file2_name)):
-            file3 = open(os.path.join(DATA_PATH, file3_name), 'w')
-            file3.write('xxx')
-            file3.close()
-        elif os.path.exists(os.path.join(DATA_PATH, file1_name)):
-            file2 = open(os.path.join(DATA_PATH, file2_name), 'w')
-            file2.write('yyy')
-            file2.close()
+        elif os.path.exists(os.path.join(USER_DIR, file2_name)):
+            msg = QtWidgets.QMessageBox.information(self, '提示', '按下OK开始录音!\n0 2 3 4 5 6 7 8 9')
+            record_with_pyaudio(os.path.join(USER_DIR,file3_name),10)
+            msg = QtWidgets.QMessageBox.information(self, '提示', '录音完成！')
+        elif os.path.exists(os.path.join(USER_DIR, file1_name)):
+            msg = QtWidgets.QMessageBox.information(self, '提示', '按下OK开始录音!\n0 2 3 4 5 6 7 8 9')
+            record_with_pyaudio(os.path.join(USER_DIR,file2_name),10)
+            msg = QtWidgets.QMessageBox.information(self, '提示', '录音完成！')
         else:
-            file1 = open(os.path.join(DATA_PATH, file1_name), 'w')
-            file1.write('dfe')
-            file1.close()
+            msg = QtWidgets.QMessageBox.information(self, '提示', '按下OK开始录音!\n0 2 3 4 5 6 7 8 9')
+            record_with_pyaudio(os.path.join(USER_DIR,file1_name),10)
+            msg = QtWidgets.QMessageBox.information(self, '提示', '录音完成！')
 
-        # ps 录音用pyaudio
+
 
     def record_data(self):
         """
@@ -180,11 +186,6 @@ class Ui_user_register(QtWidgets.QDialog):
         满了就break
         """
         import os
-        CURPATH = os.getcwd()
-        USER_DATA = 'user_data'
-
-        if not os.path.exists(os.path.join(CURPATH, USER_DATA)):
-            os.makedirs(os.path.join(CURPATH, USER_DATA))
 
         name = self.nameinput_lineEdit.text()
 
@@ -192,13 +193,52 @@ class Ui_user_register(QtWidgets.QDialog):
             msg = QtWidgets.QMessageBox.information(self, '提示', '文本栏为空！\n请先输入用户名')
             return
 
-        DATA_PATH = os.path.join(CURPATH, USER_DATA, name)
+        USER_DIR = os.path.join(os.pardir, "voiceprint//SpeakerVerificationLock//Enroll", name)
 
-        if not os.path.exists(os.path.join(DATA_PATH)):
-            os.makedirs(DATA_PATH)
-            filename = name + '.txt'
-            name_file = open(os.path.join(DATA_PATH, filename), 'w')
-            name_file.write(name)
-            name_file.close()
+        if not os.path.exists(USER_DIR):
+            os.makedirs(USER_DIR)
 
         self.record_voice()
+
+
+def record_with_pyaudio(filename, record_seconds=10, fs = 16000):
+    """filename could be absolute path"""
+    import pyaudio
+    import wave
+
+    chunk = 1024  # Record in chunks of 1024 samples
+    sample_format = pyaudio.paInt16  # 16 bits per sample
+    channels = 1
+
+    p = pyaudio.PyAudio()  # Create an interface to PortAudio
+
+    print('Recording')
+
+    stream = p.open(format=sample_format,
+                    channels=channels,
+                    rate=fs,
+                    frames_per_buffer=chunk,
+                    input=True)
+
+    frames = []  # Initialize array to store frames
+
+    # Store data in chunks for 3 seconds
+    for i in range(0, int(fs / chunk * record_seconds)):
+        data = stream.read(chunk)
+        frames.append(data)
+
+    # Stop and close the stream
+    stream.stop_stream()
+    stream.close()
+    # Terminate the PortAudio interface
+    p.terminate()
+
+    print('Finished recording')
+
+    # Save the recorded data as a WAV file
+    wf = wave.open(filename, 'wb')
+    wf.setnchannels(channels)
+    wf.setsampwidth(p.get_sample_size(sample_format))
+    wf.setframerate(fs)
+    wf.writeframes(b''.join(frames))
+    wf.close()
