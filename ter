@@ -1,0 +1,120 @@
+* [33mcommit 8b7b366bfdf158804fc914b2a6a5e657f89001b0[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+[31m|[m Author: Baokker <1048098862@qq.com>
+[31m|[m Date:   Sat Mar 12 17:16:45 2022 +0800
+[31m|[m 
+[31m|[m     forget to add
+[31m|[m   
+[31m|[m * [33mcommit 7f25b8b0e5ffbc1556e21398d4b1954392d538d6[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+[31m|[m[31m/[m  Author: Baokker <79294872+Baokker@users.noreply.github.com>
+[31m|[m   Date:   Sat Mar 12 16:51:37 2022 +0800
+[31m|[m   
+[31m|[m       add test_audio
+[31m|[m 
+* [33mcommit f7bfc4b471eeb0ea7a3e874dcc04c64c8ac0aa5f[m
+[32m|[m Author: Baokker <1048098862@qq.com>
+[32m|[m Date:   Sat Mar 12 16:12:14 2022 +0800
+[32m|[m 
+[32m|[m     almost done
+[32m|[m 
+* [33mcommit 78f146421743648942019b180165e833fa8798d5[m
+[32m|[m Author: Baokker <1048098862@qq.com>
+[32m|[m Date:   Mon Mar 7 19:56:27 2022 +0800
+[32m|[m 
+[32m|[m     modify the gui
+[32m|[m 
+* [33mcommit 9a5eed9c13606c1e84c6edef4bebe2c83658c4ac[m
+[32m|[m Author: Baokker <1048098862@qq.com>
+[32m|[m Date:   Mon Mar 7 09:56:00 2022 +0800
+[32m|[m 
+[32m|[m     successfully applies on ubuntu virtual machine
+[32m|[m 
+* [33mcommit 680284e337058a078d2a019bc54ae7835d6baf52[m[33m ([m[1;31morigin/matlab_test[m[33m)[m
+[32m|[m Author: cccloud <2390234847@qq.com>
+[32m|[m Date:   Thu Mar 3 19:22:33 2022 +0800
+[32m|[m 
+[32m|[m     code refactoring
+[32m|[m 
+* [33mcommit 7188a24637a15cb47a60e646496becd8621c3864[m
+[32m|[m Author: cccloud <2390234847@qq.com>
+[32m|[m Date:   Thu Mar 3 01:31:45 2022 +0800
+[32m|[m 
+[32m|[m     split function
+[32m|[m 
+* [33mcommit 081a9865075140b9a8ef552eca5da93dfd9375d6[m
+[32m|[m Author: cccloud <2390234847@qq.com>
+[32m|[m Date:   Wed Mar 2 13:12:20 2022 +0800
+[32m|[m 
+[32m|[m     add module for voiceprint-verification
+[32m|[m   
+*   [33mcommit 01b4b8aa4f355ae78fd670493c135bdef6fc599e[m
+[33m|[m[34m\[m  Merge: 018b248 bc166f4
+[33m|[m [34m|[m Author: Baokker <79294872+Baokker@users.noreply.github.com>
+[33m|[m [34m|[m Date:   Wed Mar 2 13:05:56 2022 +0800
+[33m|[m [34m|[m 
+[33m|[m [34m|[m     Merge branch 'dev_fbc'
+[33m|[m [34m|[m 
+[33m|[m * [33mcommit bc166f4a18ff0ddb1ea8ebecfa8d6e2d132da523[m[33m ([m[1;31morigin/dev_fbc[m[33m)[m
+[33m|[m [34m|[m Author: Baokker <104808862@qq.com>
+[33m|[m [34m|[m Date:   Sun Feb 27 10:38:55 2022 +0800
+[33m|[m [34m|[m 
+[33m|[m [34m|[m     add new files to complete nls in raspberry
+[33m|[m [34m|[m 
+[33m|[m * [33mcommit 9bc8ce34b14bba4c7c4575413703ede9335a26ca[m
+[33m|[m [34m|[m Author: Baokker <104808862@qq.com>
+[33m|[m [34m|[m Date:   Sun Feb 27 10:26:52 2022 +0800
+[33m|[m [34m|[m 
+[33m|[m [34m|[m     update with the completion of nls in raspberry pi
+[33m|[m [34m|[m 
+* [34m|[m [33mcommit 018b248aa459c3fb90952c73541db895f8cbe4d8[m
+[34m|[m [34m|[m Author: cccloud <2390234847@qq.com>
+[34m|[m [34m|[m Date:   Sat Feb 26 02:11:18 2022 +0800
+[34m|[m [34m|[m 
+[34m|[m [34m|[m     新增唇语识别模块
+[34m|[m [34m|[m 
+* [34m|[m [33mcommit c7af28eb63fe220e7aec86bdcffd54ae30fd4dae[m
+[34m|[m [34m|[m Author: cccloud <2390234847@qq.com>
+[34m|[m [34m|[m Date:   Sat Feb 26 00:17:57 2022 +0800
+[34m|[m [34m|[m 
+[34m|[m [34m|[m     完善avhubert框架
+[34m|[m [34m|[m 
+* [34m|[m [33mcommit 4064761bf58664dc5644f146a6350f0dca7511b3[m
+[34m|[m [34m|[m Author: cccloud <2390234847@qq.com>
+[34m|[m [34m|[m Date:   Fri Feb 25 21:02:23 2022 +0800
+[34m|[m [34m|[m 
+[34m|[m [34m|[m     clean
+[34m|[m [34m|[m 
+* [34m|[m [33mcommit da8330852acebfd1becad5e5c450bfc638f60bee[m
+[34m|[m [34m|[m Author: cccloud <2390234847@qq.com>
+[34m|[m [34m|[m Date:   Fri Feb 25 20:59:39 2022 +0800
+[34m|[m [34m|[m 
+[34m|[m [34m|[m     修正url
+[34m|[m [34m|[m 
+* [34m|[m [33mcommit 2a370a43cac9f753c6a6dcfd5f21c6f0a25bd8ab[m
+[34m|[m[34m/[m  Author: cccloud <2390234847@qq.com>
+[34m|[m   Date:   Fri Feb 25 20:56:04 2022 +0800
+[34m|[m   
+[34m|[m       avhubert框架
+[34m|[m 
+* [33mcommit 5c0ab044298700645bf846d0fd1a597b5b8e0d7e[m
+[34m|[m Author: cccloud <2390234847@qq.com>
+[34m|[m Date:   Tue Feb 22 15:13:16 2022 +0800
+[34m|[m 
+[34m|[m     新增：语音识别模块
+[34m|[m 
+* [33mcommit 0a32d9550c4b66740d0249a4869ddcbbcd3386ae[m
+[34m|[m Author: cccloud <2390234847@qq.com>
+[34m|[m Date:   Thu Nov 25 08:43:27 2021 +0800
+[34m|[m 
+[34m|[m     Add docs:Raspberry
+[34m|[m 
+* [33mcommit 219ba049a7fc4c81016792f5071de74399316af5[m
+[34m|[m Author: cccloud <2390234847@qq.com>
+[34m|[m Date:   Thu Nov 18 17:50:02 2021 +0800
+[34m|[m 
+[34m|[m     del cache
+[34m|[m 
+* [33mcommit ef796b9d6d3ab6af501765ddec64e70dc7155b2c[m[33m ([m[1;31morigin/dev[m[33m)[m
+  Author: cccloud <2390234847@qq.com>
+  Date:   Thu Nov 18 16:45:11 2021 +0800
+  
+      first commit
