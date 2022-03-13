@@ -1,0 +1,40 @@
+Linux：
+	VMware-workstation 16.1.0 （官网下载）
+	Ubuntu 18.04 LTS （Microsoft Store）
+	VMware Tools（与主机创建共享文件夹）
+
+IDE:    PyCharm Community Edition
+
+Python 2.7.14
+（系统自带版本为3.8.5，因此在安装完成2.7后需添加软链）
+
+安装setup-tools和pip20.3.4
+（可能存在的问题：默认安装的pip21.0不支持python2.7）
+（若TLS/SSL报错：可能由于openssl版本过低或者不存在，升级即可）
+
+包：（参考README.md）
+matplotlib
+gmm
+pypr
+scipy（依赖numpy+mkl-->anaconda2自带）
+scikit-learn 
+scikits.talkbox（依赖Visual C++ for python2.7）
+pyssp 
+pyaudio
+
+bob：（编译）
+blitz
+openblas
+boost
+
+GUI模块：
+PyQt4
+QtGui
+testbench
+filters
+
+
+我在安装过程出现了很多包无法通过pip完成安装的情况
+可以通过以下链接下载相应版本的whl后手动安装
+https://www.lfd.uci.edu/~gohlke/pythonlibs/
+
