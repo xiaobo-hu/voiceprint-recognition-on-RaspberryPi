@@ -11,6 +11,7 @@ import os.path
 from PyQt5 import QtCore, QtGui, QtWidgets
 import behavior
 
+
 class Ui_authentication(QtWidgets.QDialog):
     def setupUi(self, authentication):
         super().__init__()
@@ -184,19 +185,25 @@ class Ui_authentication(QtWidgets.QDialog):
         return result
 
 
-def judge_chinese_num_accuracy(string,arrays):
-    digit = {'一': 1, '二': 2, '三': 3, '四': 4, '五': 5, '六': 6, '七': 7, '八': 8, '九': 9,'零': 0}
-    count = 0
-    array_index = 0
-    for i in range(len(string)):
-        if string[i] in digit.keys() and digit[string[i]] == arrays[array_index]:
-            count += 1
-            array_index += 1
-    print(count)
-    if count / 4 >= 3 / 4:
-        return True
-    else:
-        return False
+def judge_chinese_num_accuracy(string, arrays):
+    digit = {'一': 1, '二': 2, '三': 3, '四': 4, '五': 5, '六': 6, '七': 7, '八': 8, '九': 9, '零': 0}
+    authenticate_arrays = list()
+    authenticate_arrays.extend((arrays, arrays[:3], arrays[1:]))
+
+    for i in range(3):
+        print("test: ", authenticate_arrays[i])
+        count = 0
+        array_index = 0
+        for j in range(len(string)):
+            if string[j] in digit.keys() and digit[string[j]] == authenticate_arrays[i][array_index]:
+                count += 1
+                array_index += 1
+        print(count)
+        if count / 4 >= 3 / 4:
+            return True
+
+    return False
+
 
 class Ui_success(QtWidgets.QDialog):
     def setupUi(self, success):
@@ -313,7 +320,8 @@ class Ui_fail(QtWidgets.QDialog):
                                                    "识别失败"))
         self.back_pushButton.setText(_translate("fail", "返回"))
 
-def record_with_pyaudio(filename, record_seconds=10, fs = 16000):
+
+def record_with_pyaudio(filename, record_seconds=10, fs=16000):
     """filename could be absolute path"""
     import pyaudio
     import wave

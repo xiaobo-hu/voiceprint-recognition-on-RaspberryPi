@@ -119,15 +119,15 @@ class Ui_user_register(QtWidgets.QDialog):
         if os.path.exists(os.path.join(USER_DIR, file1_name)) and \
                 os.path.exists(os.path.join(USER_DIR, file2_name)) and \
                 os.path.exists(os.path.join(USER_DIR, file3_name)):
-            import matlab.engine
-
-            eng = matlab.engine.start_matlab()
-            eng.cd(os.path.join(os.pardir, "voiceprint"))
-
-            eng.Train('./SpeakerVerificationLock/CNC2/*/*.wav','./model/BaseModel.mat',nargout=0)
-            eng.Enroll('./SpeakerVerificationLock/Enroll/*/*.wav', './model/BaseModel.mat', './model/CheckPoint.mat',
-                       nargout=0)
-
+            # import matlab.engine
+            #
+            # eng = matlab.engine.start_matlab()
+            # eng.cd(os.path.join(os.pardir, "voiceprint"))
+            #
+            # eng.Train('./SpeakerVerificationLock/CNC2/*/*.wav','./model/BaseModel.mat',nargout=0)
+            # eng.Enroll('./SpeakerVerificationLock/Enroll/*/*.wav', './model/BaseModel.mat', './model/CheckPoint.mat',
+            #            nargout=0)
+            # eng.quit()
             msg = QtWidgets.QMessageBox.information(self, '提示', '保存成功！')
             return
         elif not os.path.exists(os.path.join(USER_DIR, file1_name)):
