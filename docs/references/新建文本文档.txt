@@ -1,0 +1,5 @@
+https://github.com/topics/speaker-recognition
+
+清华学生的项目：https://github.com/ppwwyyxx/speaker-recognition
+
+https://github.com/Adirockzz95/Piwho
