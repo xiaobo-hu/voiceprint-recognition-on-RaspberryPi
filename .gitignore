@@ -1,2 +1,5 @@
 # pt
 *.pt
+
+# all test files in gui
+gui/test*
